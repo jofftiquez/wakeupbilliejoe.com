@@ -1,22 +1,40 @@
 <template lang="pug">
   v-app(dark)#home
+    v-progress-linear(:indeterminate="true" v-if="loading" primary).progress-top
     countdown(date="10-01-2017", @septemberEnds="septemberEnded")
     v-layout(column align-center)
       v-flex(p)
-        p Before we wake up Billie Joe Armstrong
+        p.subheading Before we wake up 
+          a(href="https://twitter.com/billiejoe" target="_blank") Billie Joe Armstrong
       v-flex(p)
-        v-btn.wakemeup-btn Wake me up when september ends
-    v-layout(column).mt-3
+        v-btn(
+          @click.native="wakeMeUp" 
+          v-if="!loggedIn"
+          v-tooltip:bottom="{html:'Be notified when September ends!'}"
+        ).primary 
+          strong Wake me up when september ends
+        v-card(v-if="loggedIn" hover)
+          v-card-text
+            v-layout(row align-center)
+              v-flex(p)
+                img(width="50" :src="user.photoURL").mr-2
+              v-flex(p)
+                small Logged in as 
+                br
+                strong.mr-2 {{ user.displayName }}
+              v-flex(p)
+                a(@click="signOut") Sign out
+    v-layout(column).mt-3.pa-1
       v-flex(xs12 md6 offset-md3)
-        small Wake up list
-    v-layout(row)
+        small WAKE UP LIST
+    v-layout(row).pa-1
       v-flex(xs12 md6 offset-md3)
         v-btn(
           icon
-          v-for="x in [0,1,2,3,4,6]" 
+          v-for="user in wakeUpList" 
           width="20" 
-          style="background-image:url('https://pbs.twimg.com/profile_images/378800000822867536/3f5a00acf72df93528b6bb7cd0a4fd0c.jpeg')"
-          v-tooltip:bottom="{html:'Jofferson Tiquez'}"
+          :style="{ 'background-image': 'url(' + user.photoURL + ')' }"
+          v-tooltip:bottom="{'html': user.displayName}"
         ).ma-1.wakeup-item
     v-dialog
       v-btn(
@@ -27,53 +45,115 @@
         right
         style="z-index: 9999999"
         slot="activator"
-      ).share-fab
+      ).share-fab.primary
         v-icon share
       v-card
         v-card-text
           v-layout(column)
             v-flex(xs12)
-              v-btn(block dark).fb-btn Facebook
-              v-btn(block dark).tweet-btn Twitter
-              v-btn(block dark).gplus-btn Google+
+              center
+                v-icon.primary--text favorite
+              p Work in progress... 
+              //- v-btn(block dark).fb-btn Facebook
+              //- v-btn(block dark).tweet-btn Twitter
+              //- v-btn(block dark).gplus-btn Google+
     v-footer(absolute).white--text
-      div Made with 
-        v-icon.red--text favorite&nbsp
-        | favorite by 
-        a(href="https://twitter.com/jrtiquez") @jrtiquez&nbsp
-        | © {{ new Date().getFullYear() }}
+      div 
+        | Made with 
+        v-icon.primary--text favorite&nbsp
+        | by 
+        a(href="https://twitter.com/jrtiquez" target="_blank") @jrtiquez&nbsp
+        |  © {{ new Date().getFullYear() }}
 </template>
 
 <script>
+import firebase from 'firebase';
+import {
+  FB, AUTH, DB, REF
+} from '../firebase'
 
 import moment from 'moment';
 import countdown from './Countdown';
 
 export default {
   components: {countdown},
+  async created() {
+    AUTH.onAuthStateChanged(user => {
+      if(!user) {
+        this.loggedIn = false;
+        return;
+      }
+      this.loggedIn = true;
+      this.user = user;
+    });
+
+    await REF.child('wake-up-list').on('value', snap => {
+      this.wakeUpList = [];
+      snap.forEach(snapChild => {
+        this.wakeUpList.push(snapChild.val())
+      }) ;
+      this.wakeUpList.reverse();
+    });
+    
+  },
   data () {
     return {
-      items: [
-        { active: true, title: 'Jason Oner', avatar: '/static/doc-images/lists/1.jpg' },
-        { active: true, title: 'Ranee Carlson', avatar: '/static/doc-images/lists/2.jpg' },
-        { title: 'Cindy Baker', avatar: '/static/doc-images/lists/3.jpg' },
-        { title: 'Ali Connors', avatar: '/static/doc-images/lists/4.jpg' },
-      ],
+      loading: false,
+      user: null,
+      loggedIn: false,
+      wakeUpList: []
     }
   },
   methods: {
 	  septemberEnded() {
 	  	// do stuff
-	  }
+	  },
+    async wakeMeUp() {
+      try {
+        this.loading = true;
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+        const result = await AUTH.signInWithPopup(provider);
+
+        const token = result.credential.accessToken;
+        const user = result.user;
+
+        console.log(token)
+        console.log(user)
+
+        await REF.child('wake-up-list')
+          .child(user.uid)
+          .set({
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            email: user.email
+          });
+
+        this.loading = false;
+      } catch(e) {
+        this.loading = false;
+        console.log(e);
+      }
+    },
+    async signOut() {
+      this.loading = true;
+      await AUTH.signOut()
+      this.loading = false;
+    }
   }
 }
-
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/*http://time.com/4147920/rare-green-day-photos/*/
+
 #home {
-  padding-top: 60px;
+  /*padding-top: 60px;*/
+  background-image: url('../assets/green-day-1.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 h1, h2 {
@@ -91,11 +171,7 @@ li {
 }
 
 a {
-  color: #42b983;
-}
-
-.wakemeup-btn {
-  background-color: #42b983 !important;
+  text-decoration: none;
 }
 
 .tweet-btn {
@@ -112,13 +188,17 @@ a {
 
 .share-fab {
   bottom: 50px;
-  background-color: #42b983 !important;
 }
 
 .wakeup-item {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.progress-top {
+  margin: 0;
+  padding: 0;
 }
 
 </style>

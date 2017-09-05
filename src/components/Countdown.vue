@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-layout(column)
+  v-layout(column)#countdown
     v-flex(xs12 md6 offset-md3)
       v-layout(row)
         v-flex(xs12 md3)
@@ -60,4 +60,7 @@ export default {
 </script>
 
 <style>
+  #countdown {
+    padding-top: 70px;
+  }
 </style>

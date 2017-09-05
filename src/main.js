@@ -4,10 +4,13 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import Vuetify from 'vuetify';
+import './firebase';
+import SocialSharing from 'vue-social-sharing';
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
+Vue.use(SocialSharing);
 
 new Vue({
   el: '#app',
