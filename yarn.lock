@@ -1776,6 +1776,10 @@ find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+fingerprintjs2@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/fingerprintjs2/-/fingerprintjs2-1.5.1.tgz#010691d425bc37fa0b5a7ec1ae85404bb3f934cb"
+
 firebase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.3.0.tgz#21d95a92f862c7e406ddf871c173b50f153f8d46"

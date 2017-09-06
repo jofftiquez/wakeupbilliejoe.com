@@ -4,6 +4,21 @@
 </template>
 
 <script>
+import Fingerprint2 from 'fingerprintjs2';
+import {
+  REF
+} from './firebase'
+
+new Fingerprint2().get(function(result, components){
+  console.log(components)
+  REF.child('visitors')
+    .child(result)
+    .set({
+      lastVisit: new Date().getTime(),
+      components: components
+    })
+});
+
 export default {
   name: 'app'
 }

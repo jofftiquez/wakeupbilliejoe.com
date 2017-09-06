@@ -23,11 +23,15 @@
 
         <h4>Use of collected information</h4>
 
-        <p>Any of the information we collect from you may be used to  personalize your experience; send notification emails such as password reminders, updates, etc;  run and operate our Website and Services. Non-personal information collected is used only to identify potential cases of abuse and establish statistical information regarding Website usage. This statistical information is not otherwise aggregated in such a way that would identify any particular user of the system.</p>
+        <p>Any of the information we collect from you may be used to  personalize your experience; improve our Website; send notification emails such as password reminders, updates, etc;  run and operate our Website and Services. Non-personal information collected is used only to identify potential cases of abuse and establish statistical information regarding Website usage. This statistical information is not otherwise aggregated in such a way that would identify any particular user of the system.</p>
 
         <h4>Children</h4>
 
         <p>We do not knowingly collect any personal information from children under the age of 13. If you are under the age of 13, please do not submit any personal information through our Website or Service. We encourage parents and legal guardians to monitor their children's Internet usage and to help enforce this Policy by instructing their children never to provide personal information through our Website or Service without their permission. If you have reason to believe that a child under the age of 13 has provided personal information to us through our Website or Service, please contact us.</p>
+
+        <h4>Cookies</h4>
+
+        <p>The Website uses "cookies" to help personalize your online experience. A cookie is a text file that is placed on your hard disk by a web page server. Cookies cannot be used to run programs or deliver viruses to your computer. Cookies are uniquely assigned to you, and can only be read by a web server in the domain that issued the cookie to you. We may use cookies to collect, store, and track information for statistical purposes to operate our Website and Services. You have the ability to accept or decline cookies. Most web browsers automatically accept cookies, but you can usually modify your browser setting to decline cookies if you prefer.</p>
 
         <h4>Links to other websites</h4>
 
@@ -53,7 +57,7 @@
 
         <p>If you have any questions about this Policy, please contact us.</p>
 
-        <p>This document was last updated on September 5, 2017</p>
+        <p>This document was last updated on September 6, 2017</p>
 </template>
 
 <style scoped>

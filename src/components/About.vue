@@ -25,7 +25,7 @@
         h5.mt-5 Contribute
         ul
           li 
-            a(href="https://github.com/jofftiquez/wakeupbilliejoe.com") GitHub
+            a(href="https://github.com/jofftiquez/wakeupbilliejoe.com" target="_blank") GitHub
 </template>
 
 <style scoped>

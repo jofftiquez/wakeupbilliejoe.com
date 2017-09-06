@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app(dark)#home
+    v-progress-linear(:indeterminate="true" v-if="loading" primary).progress-top
     <v-alert dismissible v-model="alert" id="alert">
       | This website is currently being reviewed by Google. Please read <router-link to="/privacy">Privacy Policy</router-link>
     </v-alert>
-    v-progress-linear(:indeterminate="true" v-if="loading" primary).progress-top
     countdown(date="10-01-2017", @septemberEnds="septemberEnded")
     v-layout(column align-center)
       v-flex(p)

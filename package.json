@@ -12,6 +12,7 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
+    "fingerprintjs2": "^1.5.1",
     "firebase": "^4.3.0",
     "fs": "^0.0.1-security",
     "moment": "^2.18.1",
