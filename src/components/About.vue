@@ -11,7 +11,9 @@
         h5.mt-5 Special thanks to
         ul 
           li 
-            a(href="https://vuejs.org/" target="_blank") Vue
+            a(href="https://vuejs.org/" target="_blank") Vue 2
+          li
+            a(href="https://vuetifyjs.com/" target="_blank") Vuetify 0.15
           li 
             a(href="https://firebase.google.com/" target="_blank") Firebase by Google
           li 
