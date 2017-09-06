@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app(dark)#home
     <v-alert dismissible v-model="alert" id="alert">
-      | This is website is currently being reviewed by Google. Please read <router-link to="/privacy">Privacy Policy</router-link>
+      | This website is currently being reviewed by Google. Please read <router-link to="/privacy">Privacy Policy</router-link>
     </v-alert>
     v-progress-linear(:indeterminate="true" v-if="loading" primary).progress-top
     countdown(date="10-01-2017", @septemberEnds="septemberEnded")
@@ -60,7 +60,7 @@
               //- v-btn(block dark).fb-btn Facebook
               //- v-btn(block dark).tweet-btn Twitter
               //- v-btn(block dark).gplus-btn Google+
-    v-footer(absolute).white--text
+    v-footer(absolute fixed).white--text.hidden-sm-and-down
       v-layout(column)
         v-flex(xs12)
           div 
@@ -69,7 +69,22 @@
             | by 
             a(href="https://twitter.com/jrtiquez" target="_blank") @jrtiquez&nbsp
             |  © {{ new Date().getFullYear() }}
-            router-link(to="/privacy").right Privacy Policy
+            router-link(to="/privacy").right Privacy Policy 
+            span.right &nbsp|&nbsp 
+            router-link(to="/about").right  About
+    v-footer(absolute fixed).white--text.hidden-md-and-up
+      v-layout(column)
+        v-flex(xs12)
+          small 
+            | Made with 
+            v-icon.primary--text favorite&nbsp
+            | by 
+            a(href="https://twitter.com/jrtiquez" target="_blank") @jrtiquez&nbsp
+            |  © {{ new Date().getFullYear() }}
+            router-link(to="/privacy").right Privacy Policy 
+            span.right &nbsp|&nbsp 
+            router-link(to="/about").right  About
+            
 </template>
 
 <script>

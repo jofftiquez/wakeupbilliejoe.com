@@ -1,9 +1,10 @@
 <template lang="pug">
   v-app(dark)#home
     v-toolbar(transparent fixed)
-      v-btn(flat to="/" primary) Back
+      v-btn(flat to="/" primary icon)
+        v-icon arrow_back
     v-layout(column)
-      v-flex(xs12 md6 offset-md3)
+      v-flex(xs12 md6 offset-md3).pa-2
         <h2>Privacy policy</h2>
 
         <p>This privacy policy ("Policy") describes how Website Operator ("Website Operator", "we", "us" or "our") collects, protects and uses the personally identifiable information ("Personal Information") you ("User", "you" or "your") may provide on the <a target="_blank" rel="nofollow" href="https://wakeupbilliejoe.com">https://wakeupbilliejoe.com</a> website and any of its products or services (collectively, "Website" or "Services"). It also describes the choices available to you regarding our use of your personal information and how you can access and update this information. This Policy does not apply to the practices of companies that we do not own or control, or to individuals that we do not employ or manage.</p>
@@ -57,7 +58,7 @@
 
 <style scoped>
 	#home {
-    padding-top: 60px;
+    padding-top: 80px;
     background-image: url('../assets/green-day-1.jpg');
     background-repeat: no-repeat;
     background-position: center center;
