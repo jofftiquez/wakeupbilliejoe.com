@@ -63,6 +63,6 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed !important;
   }
 </style>
