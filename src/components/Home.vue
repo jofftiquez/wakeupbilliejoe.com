@@ -1,5 +1,8 @@
 <template lang="pug">
   v-app(dark)#home
+    <v-alert dismissible v-model="alert" id="alert">
+      | This is website is currently being reviewed by Google. Please read <router-link to="/privacy">Privacy Policy</router-link>
+    </v-alert>
     v-progress-linear(:indeterminate="true" v-if="loading" primary).progress-top
     countdown(date="10-01-2017", @septemberEnds="septemberEnded")
     v-layout(column align-center)
@@ -58,12 +61,15 @@
               //- v-btn(block dark).tweet-btn Twitter
               //- v-btn(block dark).gplus-btn Google+
     v-footer(absolute).white--text
-      div 
-        | Made with 
-        v-icon.primary--text favorite&nbsp
-        | by 
-        a(href="https://twitter.com/jrtiquez" target="_blank") @jrtiquez&nbsp
-        |  © {{ new Date().getFullYear() }}
+      v-layout(column)
+        v-flex(xs12)
+          div 
+            | Made with 
+            v-icon.primary--text favorite&nbsp
+            | by 
+            a(href="https://twitter.com/jrtiquez" target="_blank") @jrtiquez&nbsp
+            |  © {{ new Date().getFullYear() }}
+            router-link(to="/privacy").right Privacy Policy
 </template>
 
 <script>
@@ -101,7 +107,8 @@ export default {
       loading: false,
       user: null,
       loggedIn: false,
-      wakeUpList: []
+      wakeUpList: [],
+      alert: true
     }
   },
   methods: {
@@ -199,6 +206,11 @@ a {
 .progress-top {
   margin: 0;
   padding: 0;
+}
+
+#alert {
+  margin: 0;
+  /*padding: 0; */
 }
 
 </style>
