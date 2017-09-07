@@ -52,14 +52,24 @@
         v-icon share
       v-card
         v-card-text
-          v-layout(column)
-            v-flex(xs12)
-              center
-                v-icon.primary--text favorite
-              p Work in progress... 
-              //- v-btn(block dark).fb-btn Facebook
-              //- v-btn(block dark).tweet-btn Twitter
-              //- v-btn(block dark).gplus-btn Google+
+          social-sharing(url="https://wakeupbilliejoe.com" inline-template)
+            div
+              network(network="facebook")
+                v-btn(block dark style="background-color:#3b5998") Facebook
+              network(network="googleplus")
+                v-btn(block dark style="background-color:#d34836") Google +
+              network(network="twitter")
+                v-btn(block dark style="background-color:#00aced") Twitter
+              network(network="pinterest")
+                v-btn(block dark style="background-color:rgb(189, 8, 28)") Pinterest
+              network(network="linkedin")
+                v-btn(block dark style="background-color:#0077b5") LinkedIn
+              network(network="reddit")
+                v-btn(block dark style="background-color:orangered") Reddit
+              network(network="vk")
+                v-btn(block dark style="background-color:#507299") VKontakte
+              network(network="whatsapp")
+                v-btn(block dark style="background-color:#1ebea5") Whatsapp
     v-footer(absolute fixed).white--text.hidden-sm-and-down
       v-layout(column)
         v-flex(xs12)

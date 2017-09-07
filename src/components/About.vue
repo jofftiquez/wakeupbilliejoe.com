@@ -18,6 +18,8 @@
             a(href="https://firebase.google.com/" target="_blank") Firebase by Google
           li 
             a(href="https://github.com/fareez-ahamed/countdown-vuejs" target="_blank") Countdown Vuejs
+          li
+            a(href="https://github.com/nicolasbeauvais/vue-social-sharing" target="_blank") Social Media Sharing
           li 
             a(href="http://time.com/4147920/rare-green-day-photos/" target="_blank") Background Image
           li 

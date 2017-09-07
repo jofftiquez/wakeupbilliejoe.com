@@ -10,7 +10,6 @@ import {
 } from './firebase'
 
 new Fingerprint2().get(function(result, components){
-  console.log(components)
   REF.child('visitors')
     .child(result)
     .set({
