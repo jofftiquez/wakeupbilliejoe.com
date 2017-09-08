@@ -24,17 +24,20 @@
           h2(align="center").hidden-md-and-up S
 </template>
 <script>
+
+import moment from 'moment';
+
 export default {
   created() {
     setInterval(() => {
-      this.now = Math.trunc((new Date()).getTime() / 1000);
+      this.now = Math.trunc(moment().unix());
     },1000);
   },
   props : ['date'],
   data() {
     return {
-      now: Math.trunc((new Date()).getTime() / 1000),
-      deadline: Math.trunc((new Date(this.date)).getTime() / 1000)
+      now: Math.trunc(moment().unix()),
+      deadline: Math.trunc(moment(this.date).unix())
     }
   },
   computed: {

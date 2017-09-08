@@ -4,7 +4,7 @@
     <v-alert dismissible v-model="alert" id="alert">
       | This website is currently being reviewed by Google. Please read <router-link to="/privacy">Privacy Policy</router-link>
     </v-alert>
-    countdown(date="10-01-2017", @septemberEnds="septemberEnded")
+    countdown(date="10/1/2017", @septemberEnds="septemberEnded")
     v-layout(column align-center)
       v-flex(p)
         p.subheading Before we wake up 
@@ -51,6 +51,8 @@
       ).share-fab.primary
         v-icon share
       v-card
+        v-card-title Let the world know!&nbsp
+          small (or at least your frieds)
         v-card-text
           social-sharing(url="https://wakeupbilliejoe.com" inline-template)
             div
@@ -81,6 +83,8 @@
             |  © {{ new Date().getFullYear() }}
             router-link(to="/privacy").right Privacy Policy 
             span.right &nbsp|&nbsp 
+            router-link(to="/terms").right  Terms
+            span.right &nbsp|&nbsp 
             router-link(to="/about").right  About
     v-footer(absolute fixed).white--text.hidden-md-and-up
       v-layout(column)
@@ -93,12 +97,17 @@
             |  © {{ new Date().getFullYear() }}
             router-link(to="/privacy").right Privacy Policy 
             span.right &nbsp|&nbsp 
+            router-link(to="/terms").right  Terms
+            span.right &nbsp|&nbsp 
             router-link(to="/about").right  About
-            
+
+    //- terms-dialog(dialog="termsDialog" @close="(val) => termsDialog = val.dialog")
 </template>
 
 <script>
 import firebase from 'firebase';
+import TermsDialog from './TermsDialog'
+
 import {
   FB, AUTH, DB, REF
 } from '../firebase'
@@ -107,7 +116,10 @@ import moment from 'moment';
 import countdown from './Countdown';
 
 export default {
-  components: {countdown},
+  components: {
+    countdown,
+    TermsDialog
+  },
   async created() {
     AUTH.onAuthStateChanged(user => {
       if(!user) {
@@ -133,7 +145,8 @@ export default {
       user: null,
       loggedIn: false,
       wakeUpList: [],
-      alert: true
+      alert: true,
+      termsDialog: false
     }
   },
   methods: {
