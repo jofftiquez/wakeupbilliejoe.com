@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app(dark)#home
     v-progress-linear(:indeterminate="true" v-if="loading" primary).progress-top
-    countdown(date="10/1/2017", @septemberEnds="septemberEnded")
+    countdown(:date="theDay", @septemberEnds="septemberEnded")
     v-layout(column align-center)
       v-flex(p)
         p.subheading Before we wake up 
@@ -118,6 +118,9 @@ export default {
     TermsDialog
   },
   async created() {
+
+    console.log(this.theDay)
+
     AUTH.onAuthStateChanged(user => {
       if(!user) {
         this.loggedIn = false;
@@ -143,7 +146,8 @@ export default {
       loggedIn: false,
       wakeUpList: [],
       alert: true,
-      termsDialog: false
+      termsDialog: false,
+      theDay: new Date(`10/1/2018`).toISOString()
     }
   },
   methods: {
