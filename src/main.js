@@ -6,14 +6,18 @@ import router from './router';
 import Vuetify from 'vuetify';
 import './firebase';
 import SocialSharing from 'vue-social-sharing';
+import store from './vuex';
+import Morphling from 'morphling';
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
 Vue.use(SocialSharing);
+Vue.use(Morphling);
 
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }
