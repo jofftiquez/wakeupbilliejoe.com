@@ -7,13 +7,7 @@
         p.subheading Before we wake up 
           a(href="https://twitter.com/billiejoe" target="_blank") Billie Joe Armstrong
       v-flex(p)
-        v-btn(
-          @click.native="wakeMeUp" 
-          v-if="!loggedIn"
-          v-tooltip:bottom="{html:'Be notified when September ends!'}"
-        ).primary 
-          strong Wake me up when september ends
-        v-card(v-if="loggedIn" hover)
+        v-card(v-if="isLoggedIn" hover)
           v-card-text
             v-layout(row align-center)
               v-flex(p)
@@ -24,6 +18,12 @@
                 strong.mr-2 {{ user.displayName }}
               v-flex(p)
                 a(@click="signOut") Sign out
+        v-btn(
+          @click.native="wakeMeUp" 
+          v-if="!isLoggedIn"
+          v-tooltip:bottom="{html:'Be notified when September ends!'}"
+        ).primary 
+          strong Wake me up when september ends
     v-layout(column).mt-3.pa-1
       v-flex(xs12 md6 offset-md3)
         small WAKE UP LIST
@@ -33,8 +33,8 @@
           icon
           v-for="user in wakeUpList" 
           width="20" 
-          :style="{ 'background-image': 'url(' + user.photoURL + ')' }"
-          v-tooltip:bottom="{'html': user.displayName}"
+          :style="{ 'background-image': 'url(' + (user.photoURL || '') + ')' }"
+          v-tooltip:bottom="{'html': user.displayName + ' - Joined ' + user.createdFormatted }"
         ).ma-1.wakeup-item
     v-dialog
       v-btn(
@@ -118,41 +118,39 @@ export default {
     TermsDialog
   },
   async created() {
-
-    console.log(this.theDay)
-
-    AUTH.onAuthStateChanged(user => {
-      if(!user) {
-        this.loggedIn = false;
-        return;
-      }
-      this.loggedIn = true;
-      this.user = user;
-    });
-
-    await REF.child('wake-up-list').on('value', snap => {
-      this.wakeUpList = [];
-      snap.forEach(snapChild => {
-        this.wakeUpList.push(snapChild.val())
-      }) ;
-      this.wakeUpList.reverse();
-    });
-    
+    this.$store.dispatch('wakeupList/streamWakeupList');
+    this.$store.dispatch('user/streamLoginStatus');
   },
   data () {
     return {
       loading: false,
-      user: null,
-      loggedIn: false,
-      wakeUpList: [],
       alert: true,
       termsDialog: false,
       theDay: new Date(`10/1/2018`).toISOString()
     }
   },
+  computed: {
+    wakeUpList: {
+      get() {
+        return this.$store.getters['wakeupList/wakeupList'];
+      }
+    },
+    isLoggedIn: {
+      get() {
+        const x = this.$store.getters['user/isLoggedIn'];
+        return this.$store.getters['user/isLoggedIn'];
+      }
+    },
+    user: {
+      get() {
+        return this.$store.getters['user/user'];
+      }
+    }
+  },
   methods: {
 	  septemberEnded() {
-	  	// do stuff
+      // TODO: 
+      // send email
 	  },
     async wakeMeUp() {
       try {
@@ -165,16 +163,7 @@ export default {
         const token = result.credential.accessToken;
         const user = result.user;
 
-        console.log(token)
-        console.log(user)
-
-        await REF.child('wake-up-list')
-          .child(user.uid)
-          .set({
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-            email: user.email
-          });
+        await this.$store.dispatch('wakeupList/addToWakeupList', user);
 
         this.loading = false;
       } catch(e) {
