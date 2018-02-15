@@ -31,7 +31,8 @@
       v-flex(xs12 md6 offset-md3)
         v-btn(
           icon
-          v-for="user in wakeUpList" 
+          v-for="(user, index) in wakeUpList" 
+          :key="index"
           width="20" 
           :style="{ 'background-image': 'url(' + (user.photoURL || '') + ')' }"
           v-tooltip:bottom="{'html': user.displayName + ' - Joined ' + user.createdFormatted }"
