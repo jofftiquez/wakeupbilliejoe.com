@@ -4,7 +4,7 @@
       v-btn(flat to="/" primary icon) 
         v-icon arrow_back
     v-layout(column)
-      v-flex(xs12 md6 offset-md3).pa-2
+      v-flex(xs12 md6 offset-md3).pb-5.pt-2
         h3 About
         p Inspired by Green Day's 
           em Wake me up when September ends.
@@ -28,6 +28,10 @@
         ul
           li 
             a(href="https://github.com/jofftiquez/wakeupbilliejoe.com" target="_blank") GitHub
+        h5.mt-5 Sponsors
+        ul 
+          li 
+            a(href="https://www.mycure.md" target="_blank") MYCURE Inc.
 </template>
 
 <style scoped>
