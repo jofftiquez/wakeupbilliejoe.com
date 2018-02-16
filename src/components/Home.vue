@@ -4,7 +4,7 @@
     countdown(:date="theDay", @septemberEnds="septemberEnded")
     v-layout(column align-center)
       v-flex(p)
-        p.subheading Before we wake up 
+        h1.subheading Before we wake up 
           a(href="https://twitter.com/billiejoe" target="_blank") Billie Joe Armstrong
       v-flex(p)
         v-card(v-if="isLoggedIn" hover)
@@ -98,13 +98,10 @@
             router-link(to="/terms").right  Terms
             span.right &nbsp|&nbsp 
             router-link(to="/about").right  About
-
-    //- terms-dialog(dialog="termsDialog" @close="(val) => termsDialog = val.dialog")
 </template>
 
 <script>
 import firebase from 'firebase';
-import TermsDialog from './TermsDialog'
 
 import {
   FB, AUTH, DB, REF
@@ -115,8 +112,7 @@ import countdown from './Countdown';
 
 export default {
   components: {
-    countdown,
-    TermsDialog
+    countdown
   },
   async created() {
     this.$store.dispatch('wakeupList/streamWakeupList');
@@ -126,7 +122,6 @@ export default {
     return {
       loading: false,
       alert: true,
-      termsDialog: false,
       theDay: new Date(`10/1/2018`).toISOString()
     }
   },

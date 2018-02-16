@@ -5,10 +5,10 @@
         v-icon arrow_back
     v-layout(column)
       v-flex(xs12 md6 offset-md3).pb-5.pt-2
-        h3 About
+        h1.titleh1 About
         p Inspired by Green Day's 
           em Wake me up when September ends.
-        h5.mt-5 Special thanks to
+        h2.titleh2.mt-5 Special thanks to
         ul 
           li 
             a(href="https://vuejs.org/" target="_blank") Vue 2
@@ -24,15 +24,28 @@
             a(href="http://time.com/4147920/rare-green-day-photos/" target="_blank") Background Image
           li 
             a(href="https://www.websitepolicies.com/" target="_blank") Website Policies
-        h5.mt-5 Contribute
+        h2.titleh2.mt-5 Contribute
         ul
           li 
             a(href="https://github.com/jofftiquez/wakeupbilliejoe.com" target="_blank") GitHub
-        h5.mt-5 Sponsors
+        h2.titleh2.mt-5 Sponsors
         ul 
           li 
             a(href="https://www.mycure.md" target="_blank") MYCURE Inc.
 </template>
+
+<script>
+  export default {
+    metaInfo: {
+      title: 'Summer has come and passed. The innocent can never last. Wake me up when September ends.', // set a title
+      titleTemplate: '%s - About',
+      htmlAttrs: {
+        lang: 'en',
+        amp: undefined
+      }
+    }
+  }
+</script>
 
 <style scoped>
 	#home {

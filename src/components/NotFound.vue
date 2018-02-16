@@ -1,0 +1,33 @@
+<template lang="pug">
+  v-app(dark)#home
+    v-toolbar(transparent fixed)
+      v-btn(flat to="/" primary icon) 
+        v-icon arrow_back
+    v-layout(column)
+      v-flex(xs12 md6 offset-md3).pb-5.pt-2
+        h1(align="center").titleh1 404 Page Not Found
+</template>
+
+<script>
+  export default {
+    metaInfo: {
+      title: 'Summer has come and passed. The innocent can never last. Wake me up when September ends.', // set a title
+      titleTemplate: '%s - Page Not Found!',
+      htmlAttrs: {
+        lang: 'en',
+        amp: undefined
+      }
+    }
+  }
+</script>
+
+<style scoped>
+	#home {
+    padding-top: 80px;
+    background-image: url('../assets/green-day-1.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed !important;
+  }
+</style>
