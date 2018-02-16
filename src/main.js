@@ -8,12 +8,14 @@ import './firebase';
 import SocialSharing from 'vue-social-sharing';
 import store from './vuex';
 import Morphling from 'morphling';
+import Meta from 'vue-meta';
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
 Vue.use(SocialSharing);
 Vue.use(Morphling);
+Vue.use(Meta);
 
 new Vue({
   el: '#app',
