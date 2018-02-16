@@ -47,4 +47,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: gray;
 }
+.titleh1 {
+  font-size: 40px;
+}
+
+.titleh2 {
+  font-size: 25px;
+}
 </style>
