@@ -52,7 +52,7 @@
 <script>
   export default {
     metaInfo: {
-      title: 'Summer has come and passed. The innocent can never last. Wake me up when September ends.', // set a title
+      title: '"Wake me up when September ends" - Billie Joe Armstrong',
       titleTemplate: '%s - Terms and conditions',
       htmlAttrs: {
         lang: 'en',
