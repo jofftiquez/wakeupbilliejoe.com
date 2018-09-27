@@ -8,8 +8,8 @@
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js && cp ./sitemap.xml ./dist && cp ./robots.txt ./dist",
-    "predeploy": "yarn build",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "deploy:ci": "firebase deploy --token \"$FIREBASE_TOKEN\""
   },
   "dependencies": {
     "fingerprintjs2": "^1.5.1",
