@@ -4,12 +4,9 @@ cache:
   paths:
     - node_modules/
 
-install_build:
+deploy_firebase:
   script:
     - npm install
     - npm run build
-
-deploy:
-  script:
     - npm run deploy:ci
   
