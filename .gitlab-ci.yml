@@ -1,0 +1,15 @@
+image: node:8.12.0
+
+cache:
+  paths:
+    - node_modules/
+
+install_build:
+  script:
+    - npm install
+    - npm run build
+
+deploy:
+  script:
+    - npm run deploy:ci
+  
