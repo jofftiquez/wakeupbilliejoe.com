@@ -20,7 +20,7 @@ deploy_firebase:
   only: 
     - live
   script:
-    - npm git rebase master
+    - git rebase master
     - npm install
     - npm run build
     - npm run deploy:ci
