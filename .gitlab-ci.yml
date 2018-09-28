@@ -6,7 +6,6 @@ cache:
 
 stages: 
   - test
-  - build
   - deploy
 
 test: 
@@ -16,19 +15,13 @@ test:
   script: 
     - echo 'tests passed'
 
-build: 
-  stage: build
-  only:
-    - master
-  script: 
-    - npm install
-    - npm run build
-
 deploy_firebase:
   stage: deploy
   only: 
     - master
   script:
+    - npm install
+    - npm run build
     - npm run deploy:ci
     
   
