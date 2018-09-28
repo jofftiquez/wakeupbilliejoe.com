@@ -4,8 +4,23 @@ cache:
   paths:
     - node_modules/
 
+stages: 
+  - test
+  - deploy
+
+test: 
+  stage: test
+  only:
+    - master
+  script: 
+    - echo 'tests passed'
+
 deploy_firebase:
+  stage: deploy
+  only: 
+    - live
   script:
+    - npm git rebase master
     - npm install
     - npm run build
     - npm run deploy:ci
