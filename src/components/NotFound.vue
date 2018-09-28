@@ -5,7 +5,7 @@
         v-icon arrow_back
     v-layout(column)
       v-flex(xs12 md6 offset-md3).pb-5.pt-2
-        h1(align="center").titleh1 404 Page Not Found
+        h1(align="center").titleh1 Summer Not Found
 </template>
 
 <script>
