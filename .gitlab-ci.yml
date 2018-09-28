@@ -18,8 +18,9 @@ test:
 deploy_firebase:
   stage: deploy
   only: 
-    - live
+    - master
   script:
+    - git checkout live
     - git rebase master
     - npm install
     - npm run build
