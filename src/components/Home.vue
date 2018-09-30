@@ -122,7 +122,7 @@ export default {
     return {
       loading: false,
       alert: true,
-      theDay: new Date(`10/1/2018`).toISOString()
+      theDay: new Date(`10/1/2019`).toISOString()
     }
   },
   computed: {
