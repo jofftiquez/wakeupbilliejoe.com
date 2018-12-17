@@ -27,7 +27,7 @@
     "vue-meta": "^1.4.3",
     "vue-router": "^2.7.0",
     "vue-social-sharing": "^2.2.5",
-    "vuetify": "^0.15.2",
+    "vuetify": "0.15.x",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
