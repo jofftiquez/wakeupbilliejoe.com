@@ -27,13 +27,13 @@
     v-layout(column).mt-3.pa-1
       v-flex(xs12 md6 offset-md3)
         small WAKE UP LIST
-    v-layout(row).pa-1
+    v-layout(row).pa-1.mb-5
       v-flex(xs12 md6 offset-md3)
         v-btn(
-          icon
           v-for="(user, index) in wakeUpList" 
           :key="index"
-          width="20" 
+          icon
+          large
           :style="{ 'background-image': 'url(' + (user.photoURL || '') + ')' }"
           v-tooltip:bottom="{'html': user.displayName + ' - Joined ' + user.createdFormatted }"
         ).ma-1.wakeup-item
@@ -70,7 +70,8 @@
                 v-btn(block dark style="background-color:#507299") VKontakte
               network(network="whatsapp")
                 v-btn(block dark style="background-color:#1ebea5") Whatsapp
-    v-footer(absolute fixed).white--text.hidden-sm-and-down
+
+    v-footer(fixed).white--text.hidden-sm-and-down
       v-layout(column)
         v-flex(xs12)
           div 
@@ -84,7 +85,7 @@
             router-link(to="/terms").right  Terms
             span.right &nbsp|&nbsp 
             router-link(to="/about").right  About
-    v-footer(absolute fixed).white--text.hidden-md-and-up
+    v-footer(fixed).white--text.hidden-md-and-up
       v-layout(column)
         v-flex(xs12)
           small 
