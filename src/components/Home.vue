@@ -123,10 +123,18 @@ export default {
     return {
       loading: false,
       alert: true,
-      theDay: new Date(`10/1/2019`).toISOString()
+      // theDay: new Date(`10/1/2020`).toISOString()
     }
   },
   computed: {
+    theDay () {
+      const yearNow = new Date().getFullYear();
+      if (Date.now() > new Date(`10/1/${yearNow}`).getTime()) {
+        return new Date(`10/1/${yearNow + 1}`).toISOString();
+      } else {
+        return new Date(`10/1/${yearNow}`).toISOString();
+      }
+    },
     wakeUpList: {
       get() {
         return this.$store.getters['wakeupList/wakeupList'];
