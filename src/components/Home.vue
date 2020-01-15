@@ -37,6 +37,18 @@
           :style="{ 'background-image': 'url(' + (user.photoURL || '') + ')' }"
           v-tooltip:bottom="{'html': user.displayName + ' - Joined ' + user.createdFormatted }"
         ).ma-1.wakeup-item
+      v-flex(xs12 md6 offset-md3)
+        //- GOOGLE ADS
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        ins(
+          class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-6835309878758776"
+          data-ad-slot="6748114630"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        )
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     v-dialog
       v-btn(
         dark
