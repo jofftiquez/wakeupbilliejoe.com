@@ -37,7 +37,7 @@
           :style="{ 'background-image': 'url(' + (user.photoURL || '') + ')' }"
           v-tooltip:bottom="{'html': user.displayName + ' - Joined ' + user.createdFormatted }"
         ).ma-1.wakeup-item
-      v-flex(xs12 md6 offset-md3)
+      //- v-flex(xs12 md6 offset-md3)
         //- GOOGLE ADS
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         ins(
