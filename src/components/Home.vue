@@ -28,7 +28,7 @@
       v-flex(xs12 md6 offset-md3)
         small WAKE UP LIST
     v-layout(row).pa-1.mb-5
-      v-flex(xs12 md6 offset-md3)
+      v-flex(xs12 md12 offset-md3)
         v-btn(
           v-for="(user, index) in wakeUpList" 
           :key="index"
